@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>05BE0A1F-FE9D-4928-8D3D-250D59EEDB66</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SXAlertView</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A284ED07F761E890603DDBC1E4D34BE7421C5AF4</key>
+		<string>https://github.com/shoryon/SXAlertView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SXAlertView.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A284ED07F761E890603DDBC1E4D34BE7421C5AF4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/shoryon/SXAlertView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A284ED07F761E890603DDBC1E4D34BE7421C5AF4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A284ED07F761E890603DDBC1E4D34BE7421C5AF4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SXAlertView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 FuJu Technology Co.,Ltd. All rights reserved.
 //
 
-#import "AlertView.h"
+#import "SXAlertView.h"
 
-@interface InputAlertView : AlertView
+@interface SXInputAlertView : SXAlertView
 
 @property (nonatomic, weak) UILabel *labelView;
 @property (nonatomic, weak) UITextField *textField;
@@ -31,7 +31,7 @@
  *  @param buttons       按钮集合
  *  @param alignmentType 按钮对齐方式
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(AlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含消息内容文本框的弹出框
  *
@@ -52,6 +52,6 @@
  *  @param buttons                 按钮集合
  *  @param alignmentType           按钮对齐方式
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(AlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 
 @end

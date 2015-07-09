@@ -6,28 +6,28 @@
 //  Copyright (c) 2015年 FuJu Technology Co.,Ltd. All rights reserved.
 //
 
-#import "InputAlertView.h"
+#import "SXInputAlertView.h"
 #import "NSString+Extension.h"
 
 #define kInputAlertViewBorder 18
 #define kInputAlertViewFontSize 16
 #define kInputAlertViewTextField 44
 
-@implementation InputAlertView
+@implementation SXInputAlertView
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons {
-    return [self initWithTitle:title message:message messageAttributedString:nil content:content buttons:buttons alignmentType:AlertViewButtonAlignmentTypeHorizontal];
+    return [self initWithTitle:title message:message messageAttributedString:nil content:content buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(AlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     return [self initWithTitle:title message:message messageAttributedString:nil content:content buttons:buttons alignmentType:alignmentType];
 }
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons {
-    return [self initWithTitle:title message:message messageAttributedString:messageAttributedString content:content buttons:buttons alignmentType:AlertViewButtonAlignmentTypeHorizontal];
+    return [self initWithTitle:title message:message messageAttributedString:messageAttributedString content:content buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(AlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     /**
      自定义内容视图
      */

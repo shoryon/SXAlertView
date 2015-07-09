@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C5DB6831B4E4156000D1CD7 /* SXInputAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5DB6821B4E4156000D1CD7 /* SXInputAlertView.m */; };
 		9CE4932E1B4A8649009CE628 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4932D1B4A8649009CE628 /* main.m */; };
 		9CE493311B4A8649009CE628 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE493301B4A8649009CE628 /* AppDelegate.m */; };
 		9CE493341B4A8649009CE628 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE493331B4A8649009CE628 /* ViewController.m */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C5DB6811B4E4156000D1CD7 /* SXInputAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXInputAlertView.h; sourceTree = "<group>"; };
+		9C5DB6821B4E4156000D1CD7 /* SXInputAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXInputAlertView.m; sourceTree = "<group>"; };
 		9C8665151B4B675300031403 /* SXAlertViewConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXAlertViewConfig.h; sourceTree = "<group>"; };
 		9CE493281B4A8649009CE628 /* SXAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SXAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE4932C1B4A8649009CE628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				9CE493521B4A875F009CE628 /* SXAlertView.bundle */,
 				9CE493531B4A875F009CE628 /* SXAlertView.h */,
 				9CE493541B4A875F009CE628 /* SXAlertView.m */,
+				9C5DB6811B4E4156000D1CD7 /* SXInputAlertView.h */,
+				9C5DB6821B4E4156000D1CD7 /* SXInputAlertView.m */,
 				9C8665151B4B675300031403 /* SXAlertViewConfig.h */,
 			);
 			path = SXAlertView;
@@ -264,6 +269,7 @@
 				9CE493621B4A896E009CE628 /* UIImage+Extension.m in Sources */,
 				9CE493611B4A896E009CE628 /* NSString+Extension.m in Sources */,
 				9CE493341B4A8649009CE628 /* ViewController.m in Sources */,
+				9C5DB6831B4E4156000D1CD7 /* SXInputAlertView.m in Sources */,
 				9CE493311B4A8649009CE628 /* AppDelegate.m in Sources */,
 				9CE493581B4A875F009CE628 /* SXAlertView.m in Sources */,
 				9CE493631B4A896E009CE628 /* UIView+Extension.m in Sources */,
@@ -394,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SXAlertView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -404,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SXAlertView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
