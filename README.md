@@ -1,5 +1,7 @@
 # SXAlertView
-IOS简易的弹出框
+简易的弹出框
+
+example:
 
 - (IBAction)show_01:(id)sender {
     
