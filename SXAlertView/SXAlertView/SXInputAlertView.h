@@ -21,7 +21,14 @@
  *  @param content 文本框中内容
  *  @param buttons 按钮集合
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含消息内容文本框的弹出框
  *
@@ -31,7 +38,16 @@
  *  @param buttons       按钮集合
  *  @param alignmentType 按钮对齐方式
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含消息内容文本框的弹出框
  *
@@ -41,7 +57,16 @@
  *  @param content                 文本框中内容
  *  @param buttons                 按钮集合
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+      messageAttributedString:(NSAttributedString *)messageAttributedString
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+           messageAttributedString:(NSAttributedString *)messageAttributedString
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含消息内容文本框的弹出框
  *
@@ -52,6 +77,17 @@
  *  @param buttons                 按钮集合
  *  @param alignmentType           按钮对齐方式
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+      messageAttributedString:(NSAttributedString *)messageAttributedString
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+           messageAttributedString:(NSAttributedString *)messageAttributedString
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 
 @end

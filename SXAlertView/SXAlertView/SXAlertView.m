@@ -14,9 +14,7 @@
 @interface SXAlertView () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, assign) SXAlertViewButtonAlignmentType alignmentType;
-
 @property (nonatomic, strong) NSMutableArray *checkedIconItems;
-
 @property (nonatomic, strong) NSArray *source;
 
 @end
@@ -101,19 +99,47 @@
 }
 
 /**
- *  显示面板
+ *  显示弹出框
  */
 - (void)show {
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [self showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 /**
- *  显示面板
+ *  以动画方式显示弹出框
+ */
+- (void)showAnimationsWithDuration:(NSTimeInterval)duration
+                           options:(UIViewAnimationOptions)options
+                        completion:(void (^)(BOOL finished))completion {
+    [self showAnimationsInView:[UIApplication sharedApplication].keyWindow
+                      duration:duration
+                       options:options
+                    completion:completion];
+}
+
+/**
+ *  在指定view上显示弹出框
  */
 - (void)showInView:(UIView *)view {
     
     [view addSubview:self];
+}
+
+/**
+ *  以动画方式在指定view上显示弹出框
+ */
+- (void)showAnimationsInView:(UIView *)view
+                    duration:(NSTimeInterval)duration
+                     options:(UIViewAnimationOptions)options
+                  completion:(void (^)(BOOL finished))completion {
+    [UIView transitionWithView:view
+                      duration:duration
+                       options:options
+                    animations:^{
+                        [view addSubview:self];
+                    }
+                    completion:completion];
 }
 
 /**
@@ -170,9 +196,16 @@
  *  @param title   标题
  *  @param message 消息内容
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message {
-    
-    return [self initWithTitle:title message:message buttons:nil];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message {
+    return [self initWithTitle:title
+                       message:message buttons:nil];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message {
+    return [[self alloc] initWithTitle:title
+                               message:message buttons:nil];
 }
 
 /**
@@ -182,9 +215,22 @@
  *  @param message 消息内容
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons {
-    
-    return [self initWithTitle:title message:message buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons {
+    return [self initWithTitle:title
+                       message:message
+                       buttons:buttons
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title
+                               message:message
+                               buttons:buttons
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -195,9 +241,28 @@
  *  @param buttons       按钮项
  *  @param alignmentType 按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
-    
-    return [self initWithTitle:title message:message buttons:buttons backgroundImage:kAlertViewButtonBackgroundImage highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage alignmentType:alignmentType];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [self initWithTitle:title
+                       message:message
+                       buttons:buttons
+               backgroundImage:kAlertViewButtonBackgroundImage
+    highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                 alignmentType:alignmentType];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                               message:message
+                               buttons:buttons
+                       backgroundImage:kAlertViewButtonBackgroundImage
+            highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                         alignmentType:alignmentType];
 }
 
 /**
@@ -209,9 +274,30 @@
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
-    
-    return [self initWithTitle:title message:message buttons:buttons backgroundImage:backgroundImage highlightedBackgroundImage:highlightedBackgroundImage alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [self initWithTitle:title
+                       message:message
+                       buttons:buttons
+               backgroundImage:backgroundImage
+    highlightedBackgroundImage:highlightedBackgroundImage
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [[self alloc] initWithTitle:title
+                               message:message
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -224,7 +310,12 @@
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     
     if (self = [super init]) {
         
@@ -272,6 +363,20 @@
     return self;
 }
 
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                               message:message
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:alignmentType];
+}
+
 #pragma mark 初始化一个带菜单选择内容的弹出框
 
 /**
@@ -280,9 +385,16 @@
  *  @param title 标题
  *  @param items 菜单项
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items {
-    
-    return [self initWithTitle:title items:items buttons:nil];
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items {
+    return [self initWithTitle:title
+                         items:items buttons:nil];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items {
+    return [[self alloc] initWithTitle:title
+                                 items:items buttons:nil];
 }
 
 /**
@@ -292,9 +404,22 @@
  *  @param items 菜单项
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items buttons:(NSArray *)buttons {
-    
-    return [self initWithTitle:title items:items buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items
+                      buttons:(NSArray *)buttons {
+    return [self initWithTitle:title
+                         items:items
+                       buttons:buttons
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title
+                                 items:items
+                               buttons:buttons
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -305,7 +430,10 @@
  *  @param buttons 按钮项
  *  @param alignmentType 按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     
     if (self = [super init]) {
         
@@ -351,7 +479,7 @@
                 [self.menuItems addObject:item];
             }
         }
-
+        
         if (buttons != nil) {
             [self createButtonItems:buttons backgroundImage:kAlertViewButtonBackgroundImage highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage alignmentType:alignmentType];
         }
@@ -359,6 +487,16 @@
         [self resizeContainer];
     }
     return self;
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                                 items:items
+                               buttons:buttons
+                         alignmentType:alignmentType];
 }
 
 /**
@@ -379,9 +517,16 @@
  *  @param title  标题
  *  @param source 数据源
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source {
-    
-    return [self initWithTitle:title pickerViewSource:source buttons:nil];
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source {
+    return [self initWithTitle:title
+              pickerViewSource:source buttons:nil];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source {
+    return [[self alloc] initWithTitle:title
+                      pickerViewSource:source buttons:nil];
 }
 
 /**
@@ -391,9 +536,16 @@
  *  @param source  数据源
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons {
-    
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons {
     return [self initWithTitle:title pickerViewSource:source buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title pickerViewSource:source buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -404,9 +556,28 @@
  *  @param buttons       按钮项
  *  @param alignmentType 按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
-    
-    return [self initWithTitle:title pickerViewSource:source buttons:buttons backgroundImage:kAlertViewButtonBackgroundImage highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage alignmentType:alignmentType];
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [self initWithTitle:title
+              pickerViewSource:source
+                       buttons:buttons
+               backgroundImage:kAlertViewButtonBackgroundImage
+    highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                 alignmentType:alignmentType];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                      pickerViewSource:source
+                               buttons:buttons
+                       backgroundImage:kAlertViewButtonBackgroundImage
+            highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                         alignmentType:alignmentType];
 }
 
 /**
@@ -418,9 +589,30 @@
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
-    
-    return [self initWithTitle:title pickerViewSource:source buttons:buttons backgroundImage:backgroundImage highlightedBackgroundImage:highlightedBackgroundImage alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [self initWithTitle:title
+              pickerViewSource:source
+                       buttons:buttons
+               backgroundImage:backgroundImage
+    highlightedBackgroundImage:highlightedBackgroundImage
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [[self alloc] initWithTitle:title
+                      pickerViewSource:source
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -433,7 +625,12 @@
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons  backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     
     if (self = [super init]) {
         
@@ -470,6 +667,20 @@
     return self;
 }
 
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                      pickerViewSource:source
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:alignmentType];
+}
+
 #pragma mark 可以传一个自定义View
 
 /**
@@ -478,9 +689,16 @@
  *  @param title      标题
  *  @param customView 自定义View
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView {
-    
-    return [self initWithTitle:title customView:customView buttons:nil];
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView {
+    return [self initWithTitle:title
+                    customView:customView buttons:nil];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView {
+    return [[self alloc] initWithTitle:title
+                            customView:customView buttons:nil];
 }
 
 /**
@@ -490,9 +708,22 @@
  *  @param customView 自定义View
  *  @param buttons    按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons {
-    
-    return [self initWithTitle:title customView:customView buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons {
+    return [self initWithTitle:title
+                    customView:customView
+                       buttons:buttons
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title
+                            customView:customView
+                               buttons:buttons
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -503,9 +734,28 @@
  *  @param buttons       按钮项
  *  @param alignmentType 按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
-    
-    return [self initWithTitle:title customView:customView buttons:buttons backgroundImage:kAlertViewButtonBackgroundImage highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage alignmentType:alignmentType];
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [self initWithTitle:title
+                    customView:customView
+                       buttons:buttons
+               backgroundImage:kAlertViewButtonBackgroundImage
+    highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                 alignmentType:alignmentType];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                            customView:customView
+                               buttons:buttons
+                       backgroundImage:kAlertViewButtonBackgroundImage
+            highlightedBackgroundImage:kAlertViewButtonBackgroundHighlightedImage
+                         alignmentType:alignmentType];
 }
 
 /**
@@ -517,9 +767,30 @@
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
-    
-    return [self initWithTitle:title customView:customView buttons:buttons backgroundImage:backgroundImage highlightedBackgroundImage:highlightedBackgroundImage alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [self initWithTitle:title
+                    customView:customView
+                       buttons:buttons
+               backgroundImage:backgroundImage
+    highlightedBackgroundImage:highlightedBackgroundImage
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage {
+    return [[self alloc] initWithTitle:title
+                            customView:customView
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
 /**
@@ -532,7 +803,12 @@
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮排列方式(水平排列|垂直排列)
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     
     if (self = [super init]) {
         
@@ -561,6 +837,20 @@
         [self resizeContainer];
     }
     return self;
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:(NSString *)title
+                            customView:customView
+                               buttons:buttons
+                       backgroundImage:backgroundImage
+            highlightedBackgroundImage:highlightedBackgroundImage
+                         alignmentType:alignmentType];
 }
 
 /**

@@ -101,7 +101,10 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param title   标题
  *  @param message 消息内容
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message;
 /**
  *  初始化包含消息内容的弹出框
  *
@@ -109,7 +112,12 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param message 消息内容
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含消息内容的弹出框
  *
@@ -118,7 +126,14 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param buttons       按钮项
  *  @param alignmentType 按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含消息内容的弹出框
  *
@@ -128,7 +143,16 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
 /**
  *  初始化包含消息内容的弹出框
  *
@@ -139,14 +163,28 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含菜单选择内容的弹出框
  *
  *  @param title 标题
  *  @param items 菜单项
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items;
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items;
 /**
  *  初始化包含菜单选择内容的弹出框
  *
@@ -154,7 +192,12 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param items 菜单项
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含菜单选择内容的弹出框
  *
@@ -163,14 +206,24 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param buttons 按钮项
  *  @param alignmentType 按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray *)items buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                        items:(NSArray *)items
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                             items:(NSArray *)items
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含选择器的弹出框
  *
  *  @param title  标题
  *  @param source 数据源
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source;
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source;
 /**
  *  初始化包含选择器的弹出框
  *
@@ -178,7 +231,12 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param source  数据源
  *  @param buttons 按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含选择器的弹出框
  *
@@ -187,7 +245,14 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param buttons       按钮项
  *  @param alignmentType 按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含选择器的弹出框
  *
@@ -197,7 +262,16 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
 /**
  *  初始化包含选择器的弹出框
  *
@@ -208,14 +282,28 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title pickerViewSource:(NSArray *)source buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+             pickerViewSource:(NSArray *)source
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                  pickerViewSource:(NSArray *)source
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含自定义View的弹出框
  *
  *  @param title      标题
  *  @param customView 自定义View
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView;
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView;
 /**
  *  初始化包含自定义View的弹出框
  *
@@ -223,7 +311,12 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param customView 自定义View
  *  @param buttons    按钮项
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons;
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons;
 /**
  *  初始化包含自定义View的弹出框
  *
@@ -232,7 +325,14 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param buttons       按钮项
  *  @param alignmentType 按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  初始化包含自定义View的弹出框
  *
@@ -242,7 +342,16 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param backgroundImage            按钮背景图片
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage;
 /**
  *  初始化包含自定义View的弹出框
  *
@@ -253,16 +362,39 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  @param highlightedBackgroundImage 按钮高亮背景图片
  *  @param alignmentType              按钮布局方式(水平布局|垂直布局)
  */
-- (instancetype)initWithTitle:(NSString *)title customView:(UIView *)customView buttons:(NSArray *)buttons backgroundImage:(NSString *)backgroundImage highlightedBackgroundImage:(NSString *)highlightedBackgroundImage alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
-
+- (instancetype)initWithTitle:(NSString *)title
+                   customView:(UIView *)customView
+                      buttons:(NSArray *)buttons
+              backgroundImage:(NSString *)backgroundImage
+   highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
++ (instancetype)alertViewWithTitle:(NSString *)title
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons
+                   backgroundImage:(NSString *)backgroundImage
+        highlightedBackgroundImage:(NSString *)highlightedBackgroundImage
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType;
 /**
  *  显示弹出框
  */
 - (void)show;
 /**
- *  显示弹出框
+ *  以动画方式显示弹出框
+ */
+- (void)showAnimationsWithDuration:(NSTimeInterval)duration
+                           options:(UIViewAnimationOptions)options
+                        completion:(void (^)(BOOL finished))completion;
+/**
+ *  在指定view上显示弹出框
  */
 - (void)showInView:(UIView *)view;
+/**
+ *  以动画方式在指定view上显示弹出框
+ */
+- (void)showAnimationsInView:(UIView *)view
+                    duration:(NSTimeInterval)duration
+                     options:(UIViewAnimationOptions)options
+                  completion:(void (^)(BOOL finished))completion;
 /**
  *  销毁弹出框
  */

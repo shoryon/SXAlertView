@@ -17,16 +17,27 @@
 
 - (IBAction)show_01:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:nil message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:nil
+                                                        message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];
+    
+    /*SXAlertView *alertView = [SXAlertView alertViewWithTitle:nil
+                                                     message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];*/
     
     alertView.delegate = self;
     
     [alertView show];
+    
+    /*[alertView showAnimationsWithDuration:0.5
+                                    options:UIViewAnimationOptionTransitionCrossDissolve
+                                completion:^(BOOL finished) {
+                                    NSLog(@"finished - %d", finished);
+                                }];*/
 }
 
 - (IBAction)show_02:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题" message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题"
+                                                        message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];
     
     alertView.delegate = self;
     
@@ -35,7 +46,9 @@
 
 - (IBAction)show_03:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题" message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。" buttons:@[@"确定", @"取消"]];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题"
+                                                        message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"
+                                                        buttons:@[@"确定", @"取消"]];
     
     alertView.delegate = self;
     
@@ -44,7 +57,10 @@
 
 - (IBAction)show_04:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题" message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。" buttons:@[@"确定", @"取消"] alignmentType:SXAlertViewButtonAlignmentTypeVertical];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"我是标题"
+                                                        message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"
+                                                        buttons:@[@"确定", @"取消"]
+                                                  alignmentType:SXAlertViewButtonAlignmentTypeVertical];
     
     alertView.delegate = self;
     
@@ -53,7 +69,8 @@
 
 - (IBAction)show_05:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:nil items:@[@"男",@"女"]];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:nil
+                                                          items:@[@"男",@"女"]];
     
     alertView.checkedIndex = 0;
     
@@ -64,7 +81,8 @@
 
 - (IBAction)show_06:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别" items:@[@"男",@"女"]];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别"
+                                                          items:@[@"男",@"女"]];
     
     alertView.checkedIndex = 0;
     
@@ -75,7 +93,9 @@
 
 - (IBAction)show_07:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别" items:@[@"不限", @"男", @"女"] buttons:@[@"确定", @"取消"]];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别"
+                                                          items:@[@"不限", @"男", @"女"]
+                                                        buttons:@[@"确定", @"取消"]];
     
     alertView.checkedIndex = 1;
     
@@ -86,7 +106,10 @@
 
 - (IBAction)show_08:(id)sender {
     
-    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别" items:@[@"不限", @"男", @"女"] buttons:@[@"确定", @"取消"] alignmentType:SXAlertViewButtonAlignmentTypeVertical];
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别"
+                                                          items:@[@"不限", @"男", @"女"]
+                                                        buttons:@[@"确定", @"取消"]
+                                                  alignmentType:SXAlertViewButtonAlignmentTypeVertical];
     
     alertView.checkedIndex = 1;
     

@@ -15,19 +15,87 @@
 
 @implementation SXInputAlertView
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons {
-    return [self initWithTitle:title message:message messageAttributedString:nil content:content buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons {
+    return [self initWithTitle:title
+                       message:message
+       messageAttributedString:nil
+                       content:content
+                       buttons:buttons
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
-    return [self initWithTitle:title message:message messageAttributedString:nil content:content buttons:buttons alignmentType:alignmentType];
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title
+                               message:message
+               messageAttributedString:nil
+                               content:content
+                               buttons:buttons
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
 }
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons {
-    return [self initWithTitle:title message:message messageAttributedString:messageAttributedString content:content buttons:buttons alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [self initWithTitle:title
+                       message:message
+       messageAttributedString:nil
+                       content:content
+                       buttons:buttons
+                 alignmentType:alignmentType];
 }
 
-- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message messageAttributedString:(NSAttributedString *)messageAttributedString content:(NSString *)content buttons:(NSArray *)buttons alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                               message:message
+               messageAttributedString:nil
+                               content:content
+                               buttons:buttons
+                         alignmentType:alignmentType];
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+      messageAttributedString:(NSAttributedString *)messageAttributedString
+                      content:(NSString *)content
+                      buttons:(NSArray *)buttons {
+    return [self initWithTitle:title
+                       message:message
+       messageAttributedString:messageAttributedString
+                       content:content
+                       buttons:buttons
+                 alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+           messageAttributedString:(NSAttributedString *)messageAttributedString
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons {
+    return [[self alloc] initWithTitle:title
+                               message:message
+               messageAttributedString:messageAttributedString
+                               content:content
+                               buttons:buttons
+                         alignmentType:SXAlertViewButtonAlignmentTypeHorizontal];
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+                      message:(NSString *)message
+      messageAttributedString:(NSAttributedString *)messageAttributedString
+                      content:(NSString *)content buttons:(NSArray *)buttons
+                alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
     /**
      自定义内容视图
      */
@@ -39,7 +107,9 @@
     CGFloat labelViewX = 0;
     CGFloat labelViewY = kInputAlertViewBorder;
     CGFloat labelViewW = kAlertViewContainerW;
-    CGFloat labelViewH = [message heightWithFont:[UIFont systemFontOfSize:kInputAlertViewFontSize] constrainedToSize:CGSizeMake(labelViewW, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping]; //根据内容计算高度
+    CGFloat labelViewH = [message heightWithFont:[UIFont systemFontOfSize:kInputAlertViewFontSize]
+                               constrainedToSize:CGSizeMake(labelViewW, MAXFLOAT)
+                                   lineBreakMode:NSLineBreakByWordWrapping]; //根据内容计算高度
     labelView.frame = CGRectMake(labelViewX, labelViewY, labelViewW, labelViewH);
     labelView.text = message;
     labelView.attributedText = messageAttributedString;
@@ -74,6 +144,20 @@
     customView.frame = CGRectMake(customViewX, customViewY, customViewW, customViewH);
     
     return [super initWithTitle:title customView:customView buttons:buttons alignmentType:alignmentType];
+}
+
++ (instancetype)alertViewWithTitle:(NSString *)title
+                           message:(NSString *)message
+           messageAttributedString:(NSAttributedString *)messageAttributedString
+                           content:(NSString *)content
+                           buttons:(NSArray *)buttons
+                     alignmentType:(SXAlertViewButtonAlignmentType)alignmentType {
+    return [[self alloc] initWithTitle:title
+                               message:message
+               messageAttributedString:messageAttributedString
+                               content:content
+                               buttons:buttons
+                         alignmentType:alignmentType];
 }
 
 @end
