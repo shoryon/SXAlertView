@@ -24,6 +24,7 @@
                                                      message:@"我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容,我是内容。"];*/
     
     alertView.delegate = self;
+    /*alertView.backgroundTouch = NO;*/ //设置不可触摸背景消失
     
     [alertView show];
     
@@ -63,6 +64,7 @@
                                                   alignmentType:SXAlertViewButtonAlignmentTypeVertical];
     
     alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
     
     [alertView show];
 }
@@ -114,6 +116,7 @@
     alertView.checkedIndex = 1;
     
     alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
     
     [alertView show];
 }
@@ -173,6 +176,7 @@
                                                   alignmentType:SXAlertViewButtonAlignmentTypeVertical];
     
     alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
     
     [alertView.pickerView selectRow:1 inComponent:0 animated:NO];
     [alertView.pickerView selectRow:1 inComponent:1 animated:NO];
@@ -278,6 +282,7 @@
                                                   alignmentType:SXAlertViewButtonAlignmentTypeVertical];
     
     alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
     
     [alertView show];
 }
@@ -286,19 +291,19 @@
 
 - (void)sxAlertView:(SXAlertView *)alertView clickedMenuAtIndex:(NSInteger)index {
     
-    NSLog(@"clicked menu at index:%d", index);
+    NSLog(@"clicked menu at index:%ld", index);
 }
 
 - (void)sxAlertView:(SXAlertView *)alertView clickedButtonAtIndex:(NSInteger)index {
     
-    NSLog(@"clicked button at index:%d", index);
+    NSLog(@"clicked button at index:%ld", index);
     
     [alertView dismiss];
 }
 
 - (void)sxAlertView:(SXAlertView *)alertView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    NSLog(@"selectRow:%d component:%d", row, component);
+    NSLog(@"selectRow:%ld component:%ld", row, component);
 }
 
 - (void)sxAlertViewWillDismiss:(SXAlertView *)alertView {

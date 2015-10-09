@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
 - (void)sxAlertView:(SXAlertView *)alertView clickedMenuAtIndex:(NSInteger)index;
 - (void)sxAlertView:(SXAlertView *)alertView clickedButtonAtIndex:(NSInteger)index;
 - (void)sxAlertView:(SXAlertView *)alertView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+- (void)sxAlertViewDidBackgroundTouch:(SXAlertView *)alertView;
 - (void)sxAlertViewWillDismiss:(SXAlertView *)alertView;
 
 @end
@@ -94,6 +95,10 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  当前菜单选中按钮的索引
  */
 @property (nonatomic, assign) NSInteger checkedIndex;
+/**
+ *  是否可以触摸(弹出框以外的区域)
+ */
+@property (nonatomic, assign) BOOL backgroundTouch;
 
 /**
  *  初始化包含消息内容的弹出框

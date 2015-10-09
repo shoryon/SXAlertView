@@ -78,9 +78,10 @@
     
     self.frame = CGRectMake(0, 0, kAlertViewAlertViewW, kAlertViewAlertViewH);
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    self.backgroundTouch = YES; //默认设置背景(弹出框以外区域)可触摸
     
-    // 添加点击遮罩层销毁弹出框
-    [self addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchDown];
+    // 添加弹出框监听事件
+    [self addTarget:self action:@selector(touch) forControlEvents:UIControlEventTouchDown];
 }
 
 /**
@@ -143,10 +144,22 @@
 }
 
 /**
+ *  触摸遮罩层(弹出框以外的区域)
+ */
+- (void)touch {
+    if (self.backgroundTouch) { // 触摸遮罩层销毁弹出框
+        [self dismiss];
+    } else { //自定义触摸事件
+        if ([self.delegate respondsToSelector:@selector(sxAlertViewDidBackgroundTouch:)]) {
+            [self.delegate sxAlertViewDidBackgroundTouch:self];
+        }
+    }
+}
+
+/**
  *  销毁面板
  */
 - (void)dismiss {
-    
     // 销毁前要执行的代理方法
     if ([self.delegate respondsToSelector:@selector(sxAlertViewWillDismiss:)]) {
         [self.delegate sxAlertViewWillDismiss:self];
