@@ -15,14 +15,8 @@
  *  弹出框按钮排列方式
  */
 typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
-    /**
-     *  水平排列
-     */
-    SXAlertViewButtonAlignmentTypeHorizontal = 0,
-    /**
-     *  垂直排列
-     */
-    SXAlertViewButtonAlignmentTypeVertical = 1
+    SXAlertViewButtonAlignmentTypeHorizontal = 0, //水平排列
+    SXAlertViewButtonAlignmentTypeVertical = 1 //垂直排列
 };
 
 #pragma mark AlertView delegate
