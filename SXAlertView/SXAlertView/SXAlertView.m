@@ -1,6 +1,6 @@
 //
 //  AlertView.m
-//  FJLottery
+//  CarAppBuyers
 //
 //  Created by 沧海小鱼 on 15/5/26.
 //  Copyright (c) 2015年 Coder Shoryon. All rights reserved.
@@ -340,7 +340,7 @@
             
             UILabel *contentView = [[UILabel alloc] init];
             
-            contentView.font = [UIFont systemFontOfSize:kAlertViewMessageFontSize];
+            contentView.font = kAlertViewMessageFontSize;
             contentView.backgroundColor = [UIColor clearColor];
             contentView.numberOfLines = 0;
             contentView.text = message;
@@ -460,18 +460,19 @@
             
             CGFloat itemX = 0;
             CGFloat itemW = kAlertViewContainerW;
-            CGFloat itemH = kAlertViewMenuButtonH;
+            CGFloat itemH = kAlertViewItemRowButtonH;
             
             for (int index = 0; index < items.count; index++) {
                 CGFloat itemY = index * itemH + titleH;
                 UIButton *item = [[UIButton alloc] initWithFrame:CGRectMake(itemX, itemY, itemW, itemH)];
-                item.tag = index;
-                item.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-                item.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+                [item setTag:index];
+                [item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+                [item setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
                 [item setTitle:items[index] forState:UIControlStateNormal];
                 [item setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [item setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-                if (index != items.count - 1) {
+                [item.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+                if (index != items.count - 1) { //添加的项的分割线
                     [item setBackgroundImage:[UIImage resizedImageWithName:kAlertViewItemRowLineImage] forState:UIControlStateNormal];
                     [item setBackgroundImage:[UIImage resizedImageWithName:kAlertViewItemRowLineImage] forState:UIControlStateHighlighted];
                 }
@@ -520,6 +521,19 @@
     _checkedIndex = checkedIndex;
     
     [self.checkedIconItems[checkedIndex] setHidden:NO];
+}
+
+/**
+ *  设置菜单选中多项
+ */
+- (void)setCheckedIndexs:(NSMutableArray *)checkedIndexs {
+    
+    _checkedIndexs = checkedIndexs;
+    
+    [checkedIndexs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [self.checkedIconItems[[obj integerValue]] setHidden:NO];
+    }];
 }
 
 #pragma mark 初始化一个带pickerView的弹出框
@@ -884,7 +898,7 @@
     UILabel *titleView = [[UILabel alloc] init];
     titleView.frame = titleBg.frame;
     titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont boldSystemFontOfSize:kAlertViewTitleFontSize];
+    titleView.font = kAlertViewTitleFontSize;
     titleView.textColor = [UIColor whiteColor];
     titleView.text = title;
     titleView.textAlignment = NSTextAlignmentCenter;
@@ -927,7 +941,7 @@
                 buttonsY += _contentView.height + kAlertViewMessageBorderTop * 2;
             }
             if (_menuItems != nil) {
-                buttonsY += _menuItems.count * kAlertViewMenuButtonH;
+                buttonsY += _menuItems.count * kAlertViewItemRowButtonH;
             }
             if (_pickerView != nil) {
                 buttonsY += _pickerView.height;
@@ -941,7 +955,7 @@
             }
             [button setTag:index];
             [button setFrame:CGRectMake(buttonsX, buttonsY, buttonsW, buttonsH)];
-            [button.titleLabel setFont:[UIFont systemFontOfSize:kAlertViewButtonFontSize]];
+            [button.titleLabel setFont:kAlertViewButtonFontSize];
             [button setTitle:buttons[index] forState:UIControlStateNormal];
             [button setTitleColor:kAlertViewButtonColor forState:UIControlStateNormal];
             [button setTitleColor:kAlertViewButtonColorHighlighted forState:UIControlStateHighlighted];
@@ -963,7 +977,7 @@
             buttonsY += _contentView.height + kAlertViewMessageBorderTop * 2;
         }
         if (_menuItems != nil) {
-            buttonsY += _menuItems.count * kAlertViewMenuButtonH;
+            buttonsY += _menuItems.count * kAlertViewItemRowButtonH;
         }
         if (_pickerView != nil) {
             buttonsY += _pickerView.height;
@@ -982,7 +996,7 @@
             CGFloat buttonsX = (buttonsW + kAlertViewButtonBorder) * index + kAlertViewButtonBorder;
             [button setTag:index];
             [button setFrame:CGRectMake(buttonsX, buttonsY, buttonsW, buttonsH)];
-            [button.titleLabel setFont:[UIFont systemFontOfSize:kAlertViewButtonFontSize]];
+            [button.titleLabel setFont:kAlertViewButtonFontSize];
             [button setTitle:buttons[index] forState:UIControlStateNormal];
             [button setTitleColor:kAlertViewButtonColor forState:UIControlStateNormal];
             [button setTitleColor:kAlertViewButtonColorHighlighted forState:UIControlStateHighlighted];
@@ -1001,8 +1015,33 @@
  *  @param button 当前点击的按钮
  */
 - (void)menuClick:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(sxAlertView:clickedMenuAtIndex:)]) {
-        [self.delegate sxAlertView:self clickedMenuAtIndex:button.tag];
+    if (self.checkedMultiterm) { //菜单多选
+        if (button.tag) { //选择其他项目
+            [[self.checkedIconItems firstObject] setHidden:YES]; //取消第一项勾选
+            //获取当前选中项目
+            UIImageView *checkedIcon = self.checkedIconItems[button.tag];
+            //判断当前项是否已选中
+            if (checkedIcon.hidden) { //未已选中则勾选
+                [checkedIcon setHidden:NO];
+                //添加索引数组
+                [self.checkedIndexs addObject:@(button.tag)];
+            } else { //已选中则反选
+                [checkedIcon setHidden:YES];
+                //移除索引数组
+                [self.checkedIndexs removeObject:@(button.tag)];
+            }
+        } else { //选择一项，则取消所有勾选
+            [self.checkedIconItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.checkedIconItems[idx] setHidden:(idx != button.tag)];
+            }];
+            //清空索引数组
+            [self.checkedIndexs removeAllObjects];
+            [self.checkedIndexs addObject:@(0)];
+        }
+    } else { //菜单单选
+        if ([self.delegate respondsToSelector:@selector(sxAlertView:clickedMenuAtIndex:)]) {
+            [self.delegate sxAlertView:self clickedMenuAtIndex:button.tag];
+        }
     }
 }
 
@@ -1032,7 +1071,7 @@
         _container.height += _contentView.height + kAlertViewMessageBorderTop * 2;
     }
     if (_menuItems != nil) {
-        _container.height += _menuItems.count * kAlertViewMenuButtonH;
+        _container.height += _menuItems.count * kAlertViewItemRowButtonH;
     }
     if (_pickerView != nil) {
         _container.height += _pickerView.height;

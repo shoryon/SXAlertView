@@ -1,6 +1,6 @@
 //
 //  AlertView.h
-//  FJLottery
+//  CarAppBuyers
 //
 //  Created by 沧海小鱼 on 15/5/26.
 //  Copyright (c) 2015年 Coder Shoryon. All rights reserved.
@@ -15,8 +15,14 @@
  *  弹出框按钮排列方式
  */
 typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
-    SXAlertViewButtonAlignmentTypeHorizontal = 0, //水平排列
-    SXAlertViewButtonAlignmentTypeVertical = 1 //垂直排列
+    /**
+     *  水平排列
+     */
+    SXAlertViewButtonAlignmentTypeHorizontal = 0,
+    /**
+     *  垂直排列
+     */
+    SXAlertViewButtonAlignmentTypeVertical = 1
 };
 
 #pragma mark AlertView delegate
@@ -89,6 +95,14 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
  *  当前菜单选中按钮的索引
  */
 @property (nonatomic, assign) NSInteger checkedIndex;
+/**
+ *  当前菜单选中按钮的索引(多项)
+ */
+@property (nonatomic, strong) NSMutableArray *checkedIndexs;
+/**
+ *  是否可以菜单多选
+ */
+@property (nonatomic, assign) BOOL checkedMultiterm;
 /**
  *  是否可以触摸(弹出框以外的区域)
  */
@@ -314,8 +328,8 @@ typedef NS_ENUM(NSInteger, SXAlertViewButtonAlignmentType) {
                    customView:(UIView *)customView
                       buttons:(NSArray *)buttons;
 + (instancetype)alertViewWithTitle:(NSString *)title
-                   customView:(UIView *)customView
-                      buttons:(NSArray *)buttons;
+                        customView:(UIView *)customView
+                           buttons:(NSArray *)buttons;
 /**
  *  初始化包含自定义View的弹出框
  *

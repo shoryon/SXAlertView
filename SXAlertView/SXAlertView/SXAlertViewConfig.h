@@ -25,29 +25,31 @@
  *  以RGBA值取颜色
  */
 #define RGBAColor(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
-/**
- *  随机颜色
- */
-#define RandomColor RGBColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
 
 #define kAlertViewAlertViewW ScreenWidth
 #define kAlertViewAlertViewH 9999
-#define kAlertViewContainerBorder 25
+
+#define kAlertViewContainerBorder 25.0f
 #define kAlertViewContainerW (ScreenWidth - kAlertViewContainerBorder * 2)
 #define kAlertViewContainerBackgroundImage @"SXAlertView.bundle/alert_bg"
-#define kAlertViewTitleH 47
-#define kAlertViewTitleFontSize 16
+
+#define kAlertViewTitleH 44.0f
+#define kAlertViewTitleFontSize [UIFont systemFontOfSize:16.0f]
 #define kAlertViewTitleBackgroundImage @"SXAlertView.bundle/alert_title_top"
+
+#define kAlertViewItemRowButtonH 40.0f
+#define kAlertViewItemRowFontSize [UIFont systemFontOfSize:15.0f]
 #define kAlertViewItemRowLineImage @"SXAlertView.bundle/alert_item_line"
 #define kAlertViewItemRowCheckedIcon @"SXAlertView.bundle/alert_item_checked"
-#define kAlertViewMessageBorderLeft 13
-#define kAlertViewMessageBorderTop 13
-#define kAlertViewMessageFontSize 12
-#define kAlertViewMessageLineSpacing 8
-#define kAlertViewMenuButtonH 45
-#define kAlertViewButtonBorder 13
-#define kAlertViewButtonH 35
-#define kAlertViewButtonFontSize 14
+
+#define kAlertViewMessageBorderLeft 13.0f
+#define kAlertViewMessageBorderTop 13.0f
+#define kAlertViewMessageFontSize [UIFont systemFontOfSize:15.0f]
+#define kAlertViewMessageLineSpacing 8.0f
+
+#define kAlertViewButtonBorder 13.0f
+#define kAlertViewButtonH 30.0f
+#define kAlertViewButtonFontSize [UIFont systemFontOfSize:14.0f]
 #define kAlertViewButtonColor RGBColor(140, 140, 140)
 #define kAlertViewButtonColorHighlighted [UIColor whiteColor]
 #define kAlertViewButtonBackgroundImage @"SXAlertView.bundle/alert_button_gray"

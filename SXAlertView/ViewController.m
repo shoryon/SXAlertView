@@ -106,6 +106,20 @@
     [alertView show];
 }
 
+- (IBAction)show_07_ex:(id)sender {
+    
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择语言"
+                                                          items:@[@"不限", @"C#", @"Java", @"iOS", @"Android", @"PHP"]
+                                                        buttons:@[@"确定", @"取消"]];
+    
+    alertView.checkedMultiterm = YES;
+    alertView.checkedIndexs = [NSMutableArray arrayWithObjects: @1, @2, nil];
+    alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
+    
+    [alertView show];
+}
+
 - (IBAction)show_08:(id)sender {
     
     SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择性别"
@@ -115,6 +129,21 @@
     
     alertView.checkedIndex = 1;
     
+    alertView.delegate = self;
+    alertView.backgroundTouch = NO; //设置不可触摸背景消失
+    
+    [alertView show];
+}
+
+- (IBAction)show_08_ex:(id)sender {
+    
+    SXAlertView *alertView = [[SXAlertView alloc] initWithTitle:@"选择语言"
+                                                          items:@[@"不限", @"C#", @"Java", @"iOS", @"Android", @"PHP"]
+                                                        buttons:@[@"确定", @"取消"]
+                                                  alignmentType:SXAlertViewButtonAlignmentTypeVertical];
+    
+    alertView.checkedMultiterm = YES;
+    alertView.checkedIndexs = [NSMutableArray arrayWithObjects: @1, @2, nil];
     alertView.delegate = self;
     alertView.backgroundTouch = NO; //设置不可触摸背景消失
     
