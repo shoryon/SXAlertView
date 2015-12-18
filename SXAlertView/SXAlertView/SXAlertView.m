@@ -462,21 +462,24 @@
             CGFloat itemW = kAlertViewContainerW;
             CGFloat itemH = kAlertViewItemRowButtonH;
             
-            for (int index = 0; index < items.count; index++) {
+            for (NSInteger index = 0; index < items.count; index++) {
+                
                 CGFloat itemY = index * itemH + titleH;
+                
                 UIButton *item = [[UIButton alloc] initWithFrame:CGRectMake(itemX, itemY, itemW, itemH)];
+                
                 [item setTag:index];
                 [item setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
                 [item setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
                 [item setTitle:items[index] forState:UIControlStateNormal];
                 [item setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [item setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-                [item.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+                [item.titleLabel setFont:kAlertViewItemRowFontSize];
                 if (index != items.count - 1) { //添加的项的分割线
                     [item setBackgroundImage:[UIImage resizedImageWithName:kAlertViewItemRowLineImage] forState:UIControlStateNormal];
                     [item setBackgroundImage:[UIImage resizedImageWithName:kAlertViewItemRowLineImage] forState:UIControlStateHighlighted];
                 }
-                [item addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
+                [item addTarget:self action:@selector(touchItem:) forControlEvents:UIControlEventTouchUpInside];
                 
                 UIImageView *checkedIcon = [[UIImageView alloc] init];
                 checkedIcon.image = [UIImage imageNamed:kAlertViewItemRowCheckedIcon];
@@ -669,6 +672,7 @@
             
             UIPickerView *pickerView = [[UIPickerView alloc] init];
             
+            pickerView.showsSelectionIndicator = YES;
             pickerView.dataSource = self;
             pickerView.delegate = self;
             
@@ -1014,25 +1018,28 @@
  *
  *  @param button 当前点击的按钮
  */
-- (void)menuClick:(UIButton *)button {
+- (void)touchItem:(UIButton *)item {
     if (self.checkedMultiterm) { //菜单多选
-        if (button.tag) { //选择其他项目
+        if (item.tag) { //选择其他项目
+            if ([self.checkedIndexs containsObject:@(0)]) {
+                [self.checkedIndexs removeObject:@(0)];
+            }
             [[self.checkedIconItems firstObject] setHidden:YES]; //取消第一项勾选
             //获取当前选中项目
-            UIImageView *checkedIcon = self.checkedIconItems[button.tag];
+            UIImageView *checkedIcon = self.checkedIconItems[item.tag];
             //判断当前项是否已选中
             if (checkedIcon.hidden) { //未已选中则勾选
                 [checkedIcon setHidden:NO];
                 //添加索引数组
-                [self.checkedIndexs addObject:@(button.tag)];
+                [self.checkedIndexs addObject:@(item.tag)];
             } else { //已选中则反选
                 [checkedIcon setHidden:YES];
                 //移除索引数组
-                [self.checkedIndexs removeObject:@(button.tag)];
+                [self.checkedIndexs removeObject:@(item.tag)];
             }
         } else { //选择一项，则取消所有勾选
             [self.checkedIconItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self.checkedIconItems[idx] setHidden:(idx != button.tag)];
+                [self.checkedIconItems[idx] setHidden:(idx != item.tag)];
             }];
             //清空索引数组
             [self.checkedIndexs removeAllObjects];
@@ -1040,7 +1047,7 @@
         }
     } else { //菜单单选
         if ([self.delegate respondsToSelector:@selector(sxAlertView:clickedMenuAtIndex:)]) {
-            [self.delegate sxAlertView:self clickedMenuAtIndex:button.tag];
+            [self.delegate sxAlertView:self clickedMenuAtIndex:item.tag];
         }
     }
 }
@@ -1099,7 +1106,7 @@
     _container.y = ScreenHeight * 0.5 - _container.height * 0.5;
 }
 
-#pragma mark pickerView data source
+#pragma mark - pickerView data source
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     
@@ -1116,7 +1123,28 @@
     return [NSString stringWithFormat:@"%@", [self.source objectAtIndex:component][row]];
 }
 
-#pragma mark pickerView delegate
+#pragma mark - pickerView delegate
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    
+    return kAlertViewPickerViewRowH;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    
+    CGFloat displayViewW = pickerView.frame.size.width;
+    CGFloat displayViewH = kAlertViewPickerViewRowH;
+    
+    UILabel *displayView = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, displayViewW, displayViewH)];
+    
+    displayView.text = [[self.source objectAtIndex:component] objectAtIndex:row];
+    displayView.textAlignment = kAlertViewPickerViewRowTextAlignment;
+    displayView.textColor = kAlertViewPickerViewRowTextColor;
+    displayView.font = kAlertViewPickerViewRowFontSize;
+    displayView.backgroundColor = kAlertViewPickerViewRowBackgroundColor;
+    
+    return displayView;
+}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([self.delegate respondsToSelector:@selector(sxAlertView:didSelectRow:inComponent:)]) {
