@@ -344,6 +344,8 @@
             contentView.backgroundColor = [UIColor clearColor];
             contentView.numberOfLines = 0;
             contentView.text = message;
+            contentView.textAlignment = kAlertViewMessageTextAlignment;
+            contentView.textColor = kAlertViewMessageTextColor;
             
             // 给lable添加行间距让高度自动也随着拉伸
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:message];

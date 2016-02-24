@@ -39,6 +39,8 @@
 
 #define kAlertViewMessageBorderLeft 13.0f
 #define kAlertViewMessageBorderTop 13.0f
+#define kAlertViewMessageTextColor [UIColor blackColor]
+#define kAlertViewMessageTextAlignment NSTextAlignmentCenter
 #define kAlertViewMessageFontSize [UIFont systemFontOfSize:15.0f]
 #define kAlertViewMessageLineSpacing 8.0f
 
